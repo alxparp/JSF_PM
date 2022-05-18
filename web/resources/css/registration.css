@@ -1,0 +1,107 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 16, 2017, 10:53:18 AM
+    Author     : Parpalak Alexander
+*/
+
+@import url("reset.css");
+
+body {
+    background-color: #BCE2F3;
+}
+
+/* - Registration page*/
+
+.registration {
+    width: 370px;
+/*    height: 220px;*/
+    margin: 100px auto;
+    /*border: 1px solid black;*/
+    border-radius: 6px;
+    font-family: "Myriad Pro", Helvetica, Arial, Tahoma, sans-serif;
+    background-color: white;
+    position: relative;
+}
+
+.registration h3 {
+    margin: 22px 0;
+}
+
+/* -- Registration form */
+
+.registration_form {
+    width: 350px;
+    text-align: center;
+    padding: 10px;
+    
+    float:left;
+}
+
+#registr_form input {
+    margin-bottom: 20px;
+    width: 220px;
+    border-radius: 5px;
+    border: 1px solid #F2F7F7;
+    height: 28px;
+    padding: 0 8px;
+}
+
+#registr_form .registr_button {
+    border-color: #48B9F3;
+    background-color: #3BB4F2;
+    color: white;
+    width: 235px;
+    cursor: pointer;
+}
+
+.registration_form p {
+    color: #AAB7BD;
+    font-size: 14px;
+}
+
+/* -- Registration form */
+
+/* -- Registration image */
+
+.registration_image {
+    height: 375px;
+}
+
+.registration_image img {
+    width: 349px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.clear {
+    clear: both;
+}
+
+/* -- Registration image */
+
+.error{
+    color:#ff0000;
+    font-style: italic;
+    font-size: 12px;
+    
+}
+
+.locales a{
+    margin-left: 10px;
+    font-size: 10px;
+}
+
+#loading_wrapper{
+    width: 50px;
+    position: absolute;
+    display: none;
+    right: 10px;
+    top: 174px;
+    /*margin: 0 auto;*/
+/*    vertical-align: top;
+    float: right;*/
+}

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{localeChanger.currentLocale}">
+        <h:head>
+            <title>#{msg.welcome}</title>
+            <h:outputStylesheet library="css" name="registration.css" />
+            <h:outputScript library="js" name="library.js" />
+        </h:head>
+        <h:body>
+
+            <noscript>
+                <h4><p>#{msg.noscript_locales}</p></h4>
+                <style type="text/css">
+                    .registration { display:none; }
+                    p { text-align: center; }
+                </style>
+            </noscript>
+
+            <div class="registration">
+
+                <h:panelGroup id="login_div" layout="block">
+
+                    <div class="registration_form">
+                        <h3><h:outputText id="authorization" value="#{msg.sign_in}"/></h3>
+                        <h:form id="registr_form">
+
+                            <h:inputText autocomplete="off" id="username" value="#{user.username}" required="true" requiredMessage="#{msg.login_required}" onkeypress="return check(event)">
+                                <f:validator validatorId="loginValidator" />
+                                <f:ajax event="keyup" render="loginError" />
+                            </h:inputText>
+                            <h:inputSecret id="password" value="#{user.password}" required="true" redisplay="true" requiredMessage="#{msg.password_required}">
+                                <f:ajax event="keyup" render="passwordError" />
+                            </h:inputSecret>
+                            <h:commandButton action="#{user.login()}" value="#{msg.sign_in}" styleClass="registr_button">
+                                <f:ajax onevent="showProgress" execute="@form" render="@form" />
+                            </h:commandButton>
+                            <p><h:message id="loginError" for="username" styleClass="error"/></p>
+                            <p><h:message id="passwordError" for="password" styleClass="error"/></p>
+                            <p><h:message for="registr_form" styleClass="error"/></p>
+
+                            <script language="javascript">
+                                document.getElementById("registr_form:username").setAttribute("placeholder", "#{msg.username}");
+                                document.getElementById("registr_form:password").setAttribute("placeholder", "#{msg.password}");
+                            </script>
+
+                        </h:form>
+
+                        <h:form>
+                            <p>#{msg.not_register} 
+                                <h:commandLink action="registration" >
+                                    #{msg.sign_up}
+                                </h:commandLink>
+                            </p>
+                        </h:form>
+
+                        <ui:include src="/templates/locales.xhtml"/>
+
+                        <div id="loading_wrapper">
+                            <h:graphicImage library="images" name="ajax_loading.gif"/> 
+                        </div>
+                    </div>
+                </h:panelGroup>
+
+                <div class="clear"></div>
+            </div>
+            <br />
+        </h:body>
+    </f:view>  
+</html>
+

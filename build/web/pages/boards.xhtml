@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+        <ui:composition template="/templates/pm_template.xhtml">
+            <ui:define name="title">
+                #{msg.boards}
+            </ui:define>
+
+            <ui:define name="workplace_header">
+
+                <div class="workplace_header">
+                    <h2>#{msg.boards}</h2>
+                    <h:form styleClass="change_participant"> 
+                        <h:selectOneMenu styleClass="select_participant" value=" " valueChangeListener="#{sprintController.searchTypeChanged}">
+                            <f:selectItems value="${sprintController.searchList}" />
+                            <f:ajax event="change" render="@all"/>
+                        </h:selectOneMenu>
+                    </h:form>
+                    <h:form  >
+                        <h:commandButton rendered="#{sprintController.sprintIsDone and  request.isUserInRole('ADMIN')}" value="Завершить спринт" styleClass="finish_sprint_button" action="#{sprintController.finishSprint()}"/>
+                        <h:commandButton value="Календарь" styleClass="finish_sprint_button" action="#{calendarController.clickCalendar()}" />
+                    </h:form>
+                </div>
+
+            </ui:define>
+
+            <ui:define name="content">
+                <h:panelGroup layout="block" rendered="#{sprintController.currentSprints.size()!=0}">
+
+
+                    <div class="board_backlog">
+                        <div class="board_header">
+                            <h2>#{msg.backlog}</h2>
+                        </div>
+
+                        <div class="tasks_container">
+                            <ul class="gallery">
+
+                                <h:form id="sortable_list">
+                                    <ui:repeat value="#{sprintController.tasksNameList}" var="se">
+                                        <h:panelGroup layout="block" rendered="#{se.tableId == 1}">
+                                            <li class="task">
+                                                <h:commandLink action="#{storyController.fillStory()}" value="#{se.name}">
+                                                    <f:param name="task_id" value="#{se.taskId}" />
+                                                </h:commandLink>
+                                                <h:commandLink class="close" rendered="#{request.isUserInRole('ADMIN')}">
+                                                    <f:param name="task_id" value="#{se.taskId}" />
+                                                    <f:param name="task_name" value="#{se.name}" />
+                                                    <f:ajax onevent="showProgress" event="click" execute="@form" render="@form :sortable_list :pages2" listener="#{taskController.deleteStory()}"/>
+                                                    X
+                                                </h:commandLink>
+                                                <h:panelGroup layout="block" styleClass="nav">
+                                                    <h:commandLink rendered="#{se.tableId == 3 or se.tableId == 2}">
+                                                        <f:param name="task_id" value="#{se.taskId}" />
+                                                        <f:param name="table_id" value="#{se.tableId}" />
+                                                        <f:param name="task_name" value="#{se.name}" />
+                                                        <f:param name="table_name" value="#{se.board}" />
+                                                        <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{sprintController.moveLeft()}"/>
+                                                        &lt;
+                                                    </h:commandLink>
+                                                    <h:commandLink rendered="#{se.tableId == 1 or se.tableId == 2}">
+                                                        <f:param name="task_id" value="#{se.taskId}" />
+                                                        <f:param name="table_id" value="#{se.tableId}" />
+                                                        <f:param name="task_name" value="#{se.name}" />
+                                                        <f:param name="table_name" value="#{se.board}" />
+                                                        <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{sprintController.moveRight()}"/>
+                                                        &gt;
+                                                    </h:commandLink>
+                                                </h:panelGroup>
+
+                                            </li>
+                                        </h:panelGroup>
+
+                                    </ui:repeat>
+                                </h:form>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                    <div class="board_in_process">
+                        <div class="board_header">
+                            <h2>#{msg.in_progress}</h2>
+                        </div>
+                        <div class="tasks_container">
+                            <ul class="gallery">
+
+                                <h:form id="sortable_list_in_progress">
+                                    <ui:repeat value="#{sprintController.tasksNameList}" var="se">
+                                        <h:panelGroup layout="block" rendered="#{se.tableId == 2}">
+                                            <li class="task">
+                                                <h:commandLink action="#{storyController.fillStory()}" value="#{se.name}">
+                                                    <f:param name="task_id" value="#{se.taskId}" />
+                                                </h:commandLink>
+                                                <h:commandLink class="close" rendered="#{request.isUserInRole('ADMIN')}">
+                                                    <f:param name="task_id" value="#{se.taskId}" />
+                                                    <f:param name="task_name" value="#{se.name}" />
+                                                    <f:ajax onevent="showProgress" event="click" execute="@form" render="@form :sortable_list :pages2" listener="#{taskController.deleteStory()}"/>
+                                                    X
+                                                </h:commandLink>
+                                                <div class="nav">
+                                                    <h:commandLink rendered="#{se.tableId == 3 or se.tableId == 2}">
+                                                        <f:param name="task_id" value="#{se.taskId}" />
+                                                        <f:param name="table_id" value="#{se.tableId}" />
+                                                        <f:param name="task_name" value="#{se.name}" />
+                                                        <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{sprintController.moveLeft()}"/>
+                                                        &lt;
+                                                    </h:commandLink>
+                                                    <h:commandLink rendered="#{se.tableId == 1 or se.tableId == 2}">
+                                                        <f:param name="task_id" value="#{se.taskId}" />
+                                                        <f:param name="table_id" value="#{se.tableId}" />
+                                                        <f:param name="task_name" value="#{se.name}" />
+                                                        <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{sprintController.moveRight()}"/>
+                                                        &gt;
+                                                    </h:commandLink>
+                                                </div>
+
+                                            </li>
+                                        </h:panelGroup>
+
+                                    </ui:repeat>
+                                </h:form>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="board_done">
+                        <div class="board_header">
+                            <h2>#{msg.done}</h2>
+                        </div>
+                        <div class="tasks_container">
+                            <ul class="gallery">
+
+                                <h:form id="sortable_list_done">
+                                    <ui:repeat value="#{sprintController.tasksNameList}" var="se">
+                                        <h:panelGroup layout="block" rendered="#{se.tableId == 3}">
+                                            <li class="task">
+                                                <h:commandLink action="#{storyController.fillStory()}" value="#{se.name}">
+                                                    <f:param name="task_id" value="#{se.taskId}" />
+                                                </h:commandLink>
+                                                <h:commandLink class="close" rendered="#{request.isUserInRole('ADMIN')}">
+                                                    <f:param name="task_id" value="#{se.taskId}" />
+                                                    <f:param name="task_name" value="#{se.name}" />
+                                                    <f:ajax onevent="showProgress" event="click" execute="@form" render="@form :sortable_list :pages2" listener="#{taskController.deleteStory()}"/>
+                                                    X
+                                                </h:commandLink>
+                                                <!--<div class="nav">-->
+                                                <h:panelGroup layout="block" styleClass="nav" rendered="#{!sprintController.ifSprintIsCompleted()}">
+                                                    <h:commandLink rendered="#{se.tableId == 3 or se.tableId == 2}">
+                                                        <f:param name="task_id" value="#{se.taskId}" />
+                                                        <f:param name="table_id" value="#{se.tableId}" />
+                                                        <f:param name="task_name" value="#{se.name}" />
+                                                        <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{sprintController.moveLeft()}"/>
+                                                        &lt;
+                                                    </h:commandLink>
+                                                    <h:commandLink rendered="#{se.tableId == 1 or se.tableId == 2}">
+                                                        <f:param name="task_id" value="#{se.taskId}" />
+                                                        <f:param name="table_id" value="#{se.tableId}" />
+                                                        <f:param name="task_name" value="#{se.name}" />
+                                                        <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{sprintController.moveRight()}"/>
+                                                        &gt;
+                                                    </h:commandLink>
+                                                    <!--</div>-->
+                                                </h:panelGroup>
+                                            </li>
+                                        </h:panelGroup>
+
+                                    </ui:repeat>
+                                </h:form>
+
+                            </ul>
+                        </div>
+                    </div>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" rendered="#{sprintController.currentSprints.size()==0}">
+                    <h:form styleClass="sprint_not_exist">
+                        <p>
+                            Сначала добавьте 
+                            <h:commandLink value="спринт" action="#{sprintController.addSprint()}" />
+                        </p>
+                    </h:form>
+                </h:panelGroup>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

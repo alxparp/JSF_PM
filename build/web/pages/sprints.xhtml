@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/pm_template.xhtml">
+            <ui:define name="workplace_header">
+
+                <div class="workplace_header">
+                    <h2>#{msg.sprints}</h2>
+                  
+                        <h:form rendered="#{(sprintController.currentSprints.size() == 0 or sprintController.ifSprintIsCompleted() or sprintController.currentSprints.get(0).lastSprintInWork) and  request.isUserInRole('ADMIN')}">
+                            <h:commandLink styleClass="create_task" action="#{sprintController.addSprint()}" value="#{msg.add_sprint}"/>
+                        </h:form>
+                </div>
+
+            </ui:define>
+
+            <ui:define name="content">
+                <ul class="backlog_list" id="sortable">
+                    <h:form id="sortable_list">
+                        <ui:repeat value="#{sprintController.currentSprints}" var="sprint">
+
+                            <li class="sprints_class">
+
+
+                                #{msg.name} <span>#{sprint.name}</span>
+                                #{msg.start_date} <span>#{sprint.startDateString}</span>
+                                #{msg.end_date} <span>#{sprint.endDateString}</span>
+                                <h:commandLink class="close_task_backlog" rendered="#{request.isUserInRole('ADMIN')}">
+                                    <f:param name="sprint_id" value="#{sprint.sprintId}" />
+                                    <f:param name="sprint_name" value="#{sprint.name}" />
+                                    <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{sprintController.deleteSprint()}"/>
+                                    X
+                                </h:commandLink>
+                            </li>
+                        </ui:repeat>
+                    </h:form>
+                </ul>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

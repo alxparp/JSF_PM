@@ -1,0 +1,781 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 16, 2017, 7:34:05 PM
+    Author     : Parpalak Alexander
+*/
+
+body {
+    background-color: #F1F1F1;
+}
+
+/*Header - begin*/
+
+#header {
+    height: 55px;
+    background-color: #4267B2;
+    font: "Helvetica Neue",Helvetica,sans-serif;
+    border-bottom: 1px solid #293F6F;
+}
+
+#logo {
+    font: bold 28px Helvetica, Arial, sans-serif;
+    color: white;
+    margin: 13px 10px;
+    margin-left: 176px;
+    float: left;
+    text-shadow: 1px 1px #19426C;
+}
+
+.search_field {
+    margin: 10px 0;
+    width: 350px;
+    height: 35px;
+    border-radius: 3px;
+    border: 1px solid #293F6F;
+    background-color: #2E477C;
+    color: #DFE2E6;
+    padding: 0 5px;
+    float: left;
+    font-size: 16px;
+}
+
+.search_field::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #94A0BB;
+}
+
+/*.global_search {
+    position: relative;
+    width: 800px;
+}*/
+
+/*clean data*/ 
+/*.close-icon {
+        border:1px solid transparent;
+        background-color: transparent;
+        display: inline-block;
+        vertical-align: middle;
+  outline: 0;
+  cursor: pointer;
+}
+.close-icon:after {
+        content: "X";
+        display: block;
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        background-color: #FA9595;
+        z-index:1;
+        right: 35px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        padding: 2px;
+        border-radius: 50%;
+        text-align: center;
+        color: white;
+        font-weight: normal;
+        font-size: 12px;
+        box-shadow: 0 0 2px #E50F0F;
+        cursor: pointer;
+}
+.search-box:not(:valid) ~ .close-icon {
+        display: none;
+}*/
+/*clean data*/
+
+.create {
+    margin: 10px 10px;
+    height: 35px;
+    width: 80px;
+    background-color: #377DC6;
+    border-radius: 3px;
+    box-shadow: 0px 2px 4px #19426C;
+    border:none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+
+.create:hover {
+    box-shadow: 0px 2px 7px #19426C;
+}
+
+.right_header_list {
+    margin: 19px 10px;
+    margin-right: 164px;
+    float: right;
+}
+
+.right_header_list li {
+    float: right;
+    font: 16px Helvetica, Arial, sans-serif;
+    margin-right: 15px;
+}
+
+.right_header_list li a {
+    color: #fff;
+    /*text-decoration: none;*/
+    padding: 9px;
+    border-radius: 3px;
+}
+
+.li_class {
+    cursor: pointer;
+}
+/*
+
+.right_header_list li a:hover {
+    text-shadow: 1px 1px #19426C;
+    background-color: #365899;
+}*/
+
+/*.project_list {
+    width: 120px;
+}*/
+
+/*Header - end*/
+
+/*SubHeader - begin*/
+
+#subheader {
+    height: 45px;
+    background-color: #fff;
+    width: 1000px;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px #E6E6E5;
+    position:relative;
+}
+
+.subheader_list {
+    width:545px;
+    /*display:block;*/
+    padding-top: 13px;
+    margin: 0 auto;
+}
+
+.subheader_list li {
+    float: left;
+    margin-right: 25px;
+}
+
+.subheader_list li a {
+    font-family: Helvetica;
+    color: #929292;
+    text-decoration: none;
+}
+
+.subheader_list li a:hover {
+    color: #007AFF;
+}
+
+/*SubHeader - end*/
+
+/*Workplace - begin*/
+
+#workplace {
+    height: 520px;
+    background-color: white;
+    width: 1000px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0px 1px 3px #E6E6E5;
+    position: relative;
+    
+}
+
+.content {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 479px;
+}
+
+.workplace_header {
+    height: 40px;
+    background-color: #FAFBFC;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #E7E8EC;
+}
+
+.workplace_header h2 {
+    padding:11px;
+    padding-left: 14px;
+    font: 16px Helvetica, Arial, sans-serif;
+    float: left;
+}
+
+.search_backlog {
+    float: right;
+    padding: 8px;
+    padding-right: 14px;
+}
+
+.search_field_backlog {
+    border: 1px solid #E7E8EC;
+    border-radius: 2px;
+    height: 13px;
+    padding: 5px;
+    margin-top: 7px;
+}
+
+.search_button_backlog {
+    border: 1px solid #E7E8EC;
+    height: 23px;
+    background-color: #F0F2F5;
+    border-radius: 2px;
+    color: #9299A6;
+    cursor: pointer;
+}
+
+.search_field_backlog::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #9299A6;
+}
+
+.backlog_list li {
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 3px;
+    font: 15px Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    position: relative;
+}
+
+.close_task_backlog {
+    position: absolute;
+    right: 7px;
+    text-decoration: none;
+    color: #A5A7A8;
+}
+
+.close_task_backlog:hover {
+    color: black;
+}
+
+.backlog_list li:hover {
+    background-color: #E9EDF1;
+}
+
+.create_task, .finish_sprint_button {
+    text-decoration: none;
+    font: 14px Helvetica, Arial, sans-serif;
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 5px;
+    position: absolute;
+    border: 1px solid #E7E8EC;
+    color: #9299A6;
+    border-radius: 3px;
+    background:white;
+    cursor: pointer;
+}
+
+.finish_sprint_button {
+    position:  inherit;
+}
+
+.create_task:hover {
+    border: 1px solid #007AFF;
+    color: #007AFF;
+}
+
+/*Workplace - end*/
+
+
+/*Boards*/
+
+.board_backlog, .board_in_process, .board_done {
+    width: 30%;
+    height:400px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 2.3%;
+    padding: auto;
+    border-radius: 5px;
+    background: #F1F1F1;
+    box-shadow: 0px 0px 1px grey;
+    position: relative;
+}
+
+.sprint_backlog {
+    width: 33%;
+}
+
+.sprint_tasks {
+    width: 33%;
+}
+
+.board_header {
+    height: 30px;
+    padding-top: 10px;
+    font: 15px "Helvetica Neue", Helvetica, Arial, Tahoma, sans-serif;
+}
+
+.board_header h2 {
+    margin-left: 20px;
+}
+
+/*Card*/
+
+.tasks_container {
+    height: 320px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.task {
+    width: 205px; /*235*/
+    box-shadow: 0px 0px 2px grey;
+    border-radius: 3px;
+    padding: 15px;
+    cursor: pointer;
+    margin: 10px;
+    font: 15px "Helvetica Neue", Helvetica, Arial, Tahoma, sans-serif;
+    position: relative;
+    background: white;
+    z-index: 5;
+}
+
+.task:active {
+    cursor: move;
+}
+
+.close {
+    position: absolute;
+    top:8px;
+    right:8px;
+    text-decoration: none;
+    color: #A5A7A8;
+}
+
+.close:hover {
+    color: black;
+}
+
+.add_task_footer {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+}
+
+.add_task_footer:hover {
+    text-decoration: underline;
+}
+
+.add_task_footer a {
+    text-decoration: none;
+    font: 15px Helvetica;
+    color: black;
+}
+
+/*Card*/
+
+/*Boards*/
+
+.clear {
+    clear: both;
+}
+
+
+
+
+.ul_class {
+    font:13px arial;
+    position:absolute;
+    right: 343px;
+    border: 1px solid black;
+    width: 150px;
+    display: none;
+    z-index: 100;
+    text-align: center;
+    background: white;
+}
+.li_class {
+    padding:2px;
+    text-align: center;
+}
+/*.li_class:focus ul {
+    display:block;
+}*/
+
+
+.pager a{
+    margin-left: 5px;
+    margin-top: 50px;
+}
+
+.pager{
+    margin-left: 15px;
+    width: 100%;
+    float:left;
+}
+.pager .selected_page{
+    color:red;
+    margin-left: 5px;
+    margin-top: 50px; 
+}
+
+#loading_wrapper{
+    width: 100%;
+    display: block;
+    text-align: center;
+    position: fixed;
+    display: none;
+    z-index: 1000;
+}
+
+#loading_wrapper p{
+    background-color: #fde88e;
+    width: 100px;
+    height: 20px;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.enterTask {
+    float:left;
+}
+
+.add_task_header {
+    width: 775px;
+    margin-top: 7px;
+}
+
+.add_participant_header {
+    width: 200px;
+}
+
+.error{
+    color:#ff0000;
+    font-style: italic;
+    font-size: 12px;
+    margin-left: 10px;
+    /*float: left;*/
+}
+
+.errorParticipant {
+    position: absolute;
+    left: 400px;
+    top: 12px;
+}
+
+.nav {
+    position: absolute;
+    bottom:2px;
+    right:8px;
+}
+
+.pager_class {
+    color: blue;
+    font: 15px Helvetica, Arial, sans-serif;
+}
+.pager_class span{
+    font: 15px Helvetica, Arial, sans-serif;
+}
+
+.comments {
+    margin: 20px;
+    height: 200px;
+    
+}
+
+.comments p {
+    font: 15px Helvetica, Arial, sans-serif;
+    margin-bottom: 5px;
+}
+
+.save_comments {
+    height: 38px;
+    margin-top: -1px;
+}
+
+.comment_area_part {
+    width: 558px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.participant_name_comment {
+    font: 16px Helvetica, sans-serif;
+
+}
+
+.labelCheck {
+    font: 14px Helvetica, sans-serif;
+}
+
+.comment_list {
+    background: #F1F1F1;
+    overflow: hidden;
+    padding: 7px;
+    margin: 0px 10px 10px 0px;
+    border-radius: 4px;
+}
+
+
+.ext_task {
+    margin:20px;
+    width: 285px;
+    position: relative;
+    float: left;
+}
+
+.participant_task, .change_participant {
+    font: 15px Helvetica, sans-serif;
+}
+
+.delete_button_task {
+    position: initial;
+    margin:auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 255px;
+
+}
+
+.participant_task h3,
+.participant_task h4 {
+    float:left;
+    margin-right: 10px;
+
+}
+
+.participant_task h4 {
+    font-weight: bold;
+}
+
+.change_participant {
+    /*margin-top: 5px;*/
+    float:left;
+}
+
+.select_participant {
+    margin-top: 5px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    height: 30px;
+    width: 255px;
+}
+
+.description {
+    font: 15px Helvetica, sans-serif;
+    margin-bottom: 15px;
+}
+
+.description p {
+    margin-bottom: 10px;
+}
+
+.textAreaClass {
+    width: 250px;
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+
+.inputNewCheckList, .dateTerm {
+    width: 255px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    height: 25px;
+}
+
+.dateTerm {
+    width: 252px;
+}
+
+.backlog_list li span {
+    width: 150px;
+    display: inline-block;
+   margin-right: 15px;
+   font:normal 15px Helvetica, sans-serif;
+}
+
+.sprints_class {
+    font-weight: bold;
+}
+
+#participant {
+    margin-top: 10px!important;
+}
+
+.ext_sprint {
+    margin-top:0;
+}
+.ext_sprint p {
+    font: 15px Helvetica, sans-serif;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.ext_sprint p:first-child {
+    margin-top:0;
+}
+
+.ext_sprint input {
+    width: 257px;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    height: 25px;
+}
+
+.sprint_select_task {
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-top: 30px;
+}
+
+.sprint_select_task p {
+    margin-left: 18px;
+    font-size: 17px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    /*border: 1px solid grey;*/
+    box-shadow: 0px 0px 2px gray;
+    padding-left: 4px;
+    padding-right: 4px;
+    z-index: 10;
+    background:white;
+    border-radius: 3px;
+    margin-left: 3px;
+}
+
+.task a:hover {
+    text-decoration: none;
+}
+
+table, th, td {
+    border: 1px solid black;
+    font: 15px Helvetica, Arial, sans-serif;
+}
+th, td {
+    padding: 5px;
+}
+
+.history_info span:first-child {
+    width: 500px;
+    font-weight: bold!important;
+}
+
+.history_info .datetime_history_info {
+    width: 400px;
+    font-weight: bold!important;
+}
+
+.comment {
+    height: 372px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.left_bar_task {
+    height: 443px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.start_sprint_button {
+    margin-left: 20px;
+}
+
+.sprint_not_exist {
+    margin: 0 auto;
+    margin-top: 200px;
+    display: block;
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 5px;
+    width: 180px;
+    font: 15px Helvetica, sans-serif;
+    background: #FAFBFC;
+}
+
+.finish_sprint{
+    float: left;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.enterProject {
+    position: absolute;
+    left: 10px;
+}
+
+.project_workplace {
+    margin-top: 20px;
+}
+
+.messages {
+    width: 655px;
+    margin: 0 auto;
+}
+
+.messagesEnterForm {
+    margin-top: 10px;
+}
+
+.message {
+    border: 1px solid #E7E8EC;
+    border-radius: 3px;
+    padding: 10px 0 10px 10px;
+}
+
+.calendarDate {
+    width: 226px;
+    height: 130px;
+    border: 1px solid grey;
+    float:left;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+.calendarDay {
+    font: bold 15px Helvetica, Arial, sans-serif;
+    color: #4267B2;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.calendarTask {
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 0px 0px 2px gray;
+    font: 15px Helvetica, Arial, sans-serif;
+    border-radius: 3px;
+    cursor:pointer;
+}
+
+.calendarGroupTask {
+    height: 100px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.calendarTask:hover {
+    box-shadow: 0px 0px 4px gray;
+}
+
+.calendarContent {
+    margin: 10px!important;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 450px;
+}
+
+.taskLink {
+    text-decoration: none;
+    color: black;
+}

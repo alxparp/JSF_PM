@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/pm_template.xhtml">
+            <ui:define name="title">
+                #{msg.backlog}
+            </ui:define>
+
+            <ui:define name="workplace_header">
+
+                <div class="workplace_header">
+                    <h2>#{msg.task}</h2>
+                    <h3 class="story_name">#{storyController.currentStory.name} <span>(${storyController.currentStory.board})</span></h3>
+                </div>
+                <h:form>
+                    <h:commandLink class="close" action="/pages/main.xhtml">X</h:commandLink>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="ext_task left_bar_task">
+
+
+
+
+                    <h:form styleClass="participant_task"  rendered="#{storyController.currentStory.participant != null}">
+                        <h4>#{msg.participant} </h4>
+                        <h:outputText value="#{storyController.currentStory.participant}" /> <br />
+                        <h:commandButton value="#{msg.delete_participant}" styleClass="delete_button_task create_task"  rendered="#{request.isUserInRole('ADMIN')}">
+                            <f:param name="task_id" value="#{storyController.currentStory.taskId}"/>
+                            <f:param name="task_name" value="#{storyController.currentStory.name}"/>
+                            <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{participantController.deleteParticipantFromStory}"/>
+                        </h:commandButton>
+                    </h:form>
+
+                    <p>
+                        <h:form styleClass="change_participant"  rendered="#{request.isUserInRole('ADMIN')}"> 
+                            #{msg.change_participant}<br />
+                            <h:selectOneMenu styleClass="select_participant" value=" " valueChangeListener="#{participantController.searchTypeChanged}">
+                                <f:selectItems value="${participantController.searchList}" />
+                                <f:ajax event="change" render="@all"/>
+                            </h:selectOneMenu>
+                        </h:form>
+                    </p>
+                    <br />
+
+                    <h:panelGroup layout="block" styleClass="description">
+                        <p>#{msg.term}</p>
+                        <h:form>
+                            <h:inputText t:type="date" t:min="2016-12-31" value="#{storyController.currentStory.datetime}" styleClass="dateTerm">
+                                <f:convertDateTime pattern="yyyy-MM-dd"/>
+                            </h:inputText>
+                            <h:commandButton styleClass="delete_button_task create_task" value="#{msg.save}">
+                                <f:param name="task_id" value="#{storyController.currentStory.taskId}"/>
+                                <f:param name="task_name" value="#{storyController.currentStory.name}"/>
+                                <f:param name="term" value="#{storyController.currentStory.datetime}"/>
+                                <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{storyController.updateTerm()}"/>
+                            </h:commandButton>
+                        </h:form>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="description">
+                        <p>#{msg.description}</p>
+                        <h:form>
+                            <h:inputTextarea disabled="#{request.isUserInRole('USER')}" styleClass="textAreaClass" value="#{storyController.currentStory.description}"/>
+                            <br />
+                            <h:commandButton styleClass="delete_button_task create_task" value="#{msg.save}" rendered="#{request.isUserInRole('ADMIN')}">
+                                <f:param name="description" value="#{storyController.currentStory.name}"/>
+                                <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{storyController.updateDescription()}"/>
+                            </h:commandButton>
+                        </h:form>
+                    </h:panelGroup>
+
+
+                    <div class="check_list">
+                        <h:form id="sortable_list">
+                            <h:panelGroup layout="block" rendered="#{checkListController.currentCheckLists.get(0).name == null}">
+                                <h:inputText styleClass="inputNewCheckList" value="#{checkListController.newCheckList}"/>
+                                <br />
+                                <h:commandButton value="#{msg.add_check_list}" styleClass="delete_button_task create_task">
+                                    <f:param name="task_id" value="#{storyController.currentStory.taskId}"/>
+                                    <f:param name="task_name" value="#{storyController.currentStory.name}"/>
+                                    <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{checkListController.addNewCheckList()}"/>
+                                </h:commandButton>
+                            </h:panelGroup>
+                            <ui:repeat value="#{checkListController.currentCheckLists}" var="checkList">
+                                <h:panelGroup rendered="#{checkList.name != null}">
+                                    <h3 class="story_name">#{checkList.name}(
+                                        <h:commandLink >
+                                            <f:param name="check_list_id" value="#{checkList.checkListId}" />
+                                            <f:param name="task_id" value="#{storyController.currentStory.taskId}"/>
+                                            <f:param name="task_name" value="#{storyController.currentStory.name}"/>
+                                            <f:param name="check_list_name" value="#{checkList.name}"/>
+                                            <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{checkListController.deleteCheckList()}"/>
+                                            #{msg.delete}
+                                        </h:commandLink>)
+                                    </h3>
+
+                                    <ui:repeat value="#{checkList.items}" var="item">
+
+                                        <input type="checkbox"/><label for="checkbox" class="labelCheck">${item.name}</label>
+                                        <h:commandLink class="close_task_backlog">
+                                            <f:param name="item_id" value="#{item.itemId}" />
+                                            <f:param name="check_list_id" value="#{checkList.checkListId}" />
+                                            <f:param name="task_id" value="#{storyController.currentStory.taskId}"/>
+                                            <f:param name="item_name" value="#{item.name}" />
+                                            <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{checkListController.deleteItem()}"/>
+                                            X
+                                        </h:commandLink>
+                                        <br />    
+                                    </ui:repeat>
+                                    <h:inputText value="#{checkListController.newItem}" styleClass="inputNewCheckList"/><br />
+                                    <h:commandButton value="#{msg.add_element}" styleClass="delete_button_task create_task">
+                                        <f:param name="check_list_id" value="#{checkList.checkListId}" />
+                                        <f:param name="task_id" value="#{storyController.currentStory.taskId}"/>
+                                        <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{checkListController.addNewItem()}"/>
+                                    </h:commandButton>
+                                </h:panelGroup>
+                            </ui:repeat>
+                        </h:form>
+                    </div>
+
+
+                </div>
+                <div class="comments">
+                    <p>#{msg.comment}</p>
+                    <h:form>
+                        <h:inputTextarea styleClass="comment_area_part" value="#{commentController.description}" />
+                        <h:commandButton styleClass="save_comments create_task" value="#{msg.save}">
+                            <f:param name="task_id" value="#{storyController.currentStory.taskId}"/>
+                            <f:param name="task_name" value="#{storyController.currentStory.name}"/>
+                            <f:param name="username" value="#{user.username}"/>
+                            <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{commentController.addComment()}"/>
+                        </h:commandButton>
+
+                    </h:form>
+                    <div class="comment">
+                        <h:form>
+                            <ui:repeat value="#{commentController.currentCommentsList}" var="comment">
+                                <div class="comment_list">
+                                    <h2 class="participant_name_comment">#{comment.participant}</h2>
+                                    <p style="color:grey; font-style: italic;" >#{comment.description}</p>
+                                </div>
+                            </ui:repeat>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

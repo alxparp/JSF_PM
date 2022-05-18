@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/pm_template.xhtml">
+            <ui:define name="title">
+                #{msg.backlog}
+            </ui:define>
+
+            <ui:define name="workplace_header">
+                <div class="workplace_header">
+                    <h2>#{msg.conversation}</h2>
+                </div>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:panelGroup id="sortable_list"></h:panelGroup>
+                <div class="comments messages">
+                    <h:form styleClass="messagesEnterForm">
+                        <h:inputTextarea styleClass="comment_area_part" value="#{messageController.description}" />
+                        <h:commandButton styleClass="save_comments create_task" value="#{msg.send}">
+                            <f:ajax onevent="showProgress" event="click" execute="@form" render="@all" listener="#{messageController.addMessage()}"/>
+                        </h:commandButton>
+
+                    </h:form>
+                    <div class="comment message">
+                        <h:form>
+                            <ui:repeat value="#{messageController.currentMessagesList}" var="message">
+                                <div class="comment_list">
+                                    <h2 class="participant_name_comment">#{message.participant}</h2>
+                                    <p style="color:grey; font-style: italic;" >#{message.description}</p>
+                                </div>
+                            </ui:repeat>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,182 @@
+body {
+    
+}
+
+.task {
+    width: 250px;
+    box-shadow: 0px 0px 2px grey;
+    border-radius: 3px;
+    padding: 15px;
+    cursor: pointer;
+    margin: 10px;
+    font: 15px "Helvetica Neue", Helvetica, Arial, Tahoma, sans-serif;
+    position: relative;
+}
+
+.task:active {
+    cursor: move;
+}
+
+.task p {
+    margin:none;
+}
+
+/*Extend task*/
+
+.extend_task {
+    width: 600px;
+    margin-top: 15px;
+    box-shadow: 0px 0px 2px grey;
+    border-radius: 3px;
+    position: relative;
+    padding: 10px;
+    font: 15px "Helvetica Neue", Helvetica, Arial, Tahoma, sans-serif;
+    margin: 0 auto;
+    background: white;
+}
+
+.close {
+    position: absolute;
+    top:8px;
+    right:8px;
+    text-decoration: none;
+    color: #A5A7A8;
+}
+
+.close:hover {
+    color: black;
+}
+
+.story_name {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 11px!important;
+    font: bold 16px Helvetica, Arial, sans-serif;
+}
+
+.story_name span{
+    font-weight: normal;
+}
+
+.extend_task p {
+    margin-bottom: 20px;
+}
+
+.extend_task p span{
+    text-decoration: underline;
+}
+
+/* Actions */
+
+.actions {
+    height: 300px;
+    width: 170px;
+    float: right;
+}
+
+.actions li {
+    margin-top: 10px;
+}
+
+.actions li a {
+    text-decoration: none;
+    display: block;
+    height: 27px;
+    text-align: center;
+    padding-top: 8px;
+    border-radius: 4px;
+    background: #EDEFF0;
+    color: black;
+}
+
+.actions li a:hover {
+    box-shadow: 0px 0px 1px grey;
+}
+
+/*Parameters*/
+
+.parameters {
+    height: 100px;
+}
+
+.parameters li {
+    float: left;
+    margin-right: 5px;
+}
+
+.participants p {
+    margin-bottom: 5px;
+}
+
+.participants div {
+    width: 30px;
+    height: 30px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    float: left;
+    margin-right: 10px;
+}
+
+.labels {
+    height: 60px;
+}
+
+.labels p {
+    margin-bottom: 5px;
+}
+
+.labels div {
+    width: 50px;
+    height: 10px;
+    border-radius: 4px;
+    background: #F2D600;
+    float: left;
+    margin-right: 10px;
+}
+
+.term p {
+    margin-bottom: 5px;
+}
+
+.term form input {
+    width: 200px;
+}
+
+/* Description */
+
+.description_area, .comment_area {
+    margin-right: 10px;
+}
+
+.description_save, .comment_save {
+    display: block;
+    text-decoration: none;
+    width: 75px;
+    padding:6px;
+    border-radius: 3px;
+    background: #EDEFF0;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.description_save:hover, .comment_save:hover {
+    box-shadow: 0px 0px 1px grey;
+}
+
+/*Check list*/
+
+.check_list h3 {
+    margin-bottom: 10px;
+}
+
+.check_list form input {
+    margin-bottom: 10px;
+}
+
+.add_element {
+    text-decoration: none;
+    color: grey;
+    margin-bottom: 10px;
+    display: block;
+}
+

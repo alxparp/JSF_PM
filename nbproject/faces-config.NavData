@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="templates/pm_template.xhtml" x="608" y="78" zoom="true"/>
+        <Node id="index.xhtml" x="119" y="460" zoom="true"/>
+        <Node id="templates/locales.xhtml" x="368" y="56" zoom="true"/>
+        <Node id="pages/main.xhtml" x="-86" y="65" zoom="true"/>
+        <Node id="pages/task.xhtml" x="96" y="106" zoom="true"/>
+        <Node id="pages/boards.xhtml" x="306" y="258" zoom="true"/>
+        <Node id="registration.xhtml" x="643" y="377" zoom="true"/>
+        <Node id="pages/sprints.xhtml" x="330" y="370" zoom="true"/>
+        <Node id="pages/projects.xhtml" x="-108" y="327" zoom="true"/>
+        <Node id="pages/participants.xhtml" x="475" y="155" zoom="true"/>
+        <Node id="pages/history.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="pages/calendar.xhtml" x="73" y="233" zoom="true"/>
+        <Node id="pages/sprint.xhtml" x="330" y="297" zoom="true"/>
+        <Node id="templates/header.xhtml" x="604" y="228" zoom="true"/>
+        <Node id="pages/conversation.xhtml" x="150" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
